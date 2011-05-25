@@ -203,6 +203,7 @@ def add_dependency(project_name, dependency_name):
 
         project.add_build_setting(configuration[1], 'OTHER_LDFLAGS', '-ObjC')
     
+#    project.add_bundle(dependency_name)
 #    //add_modules_to_project(args, project, options.configs)
 
 def get_project(name):

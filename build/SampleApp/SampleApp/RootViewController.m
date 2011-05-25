@@ -24,9 +24,13 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    NSBundle* bundle = [NSBundle bundleWithPath:@"bundle://SampleLibraryResources.bundle"];    
-    NSLog(@"%@", [NSBundle allBundles]);
+    NSBundle* mainBundle = [NSBundle mainBundle];
+    NSString* path = [mainBundle pathForResource:@"SampleFrameworkResources.bundle" ofType:nil];
+    NSBundle* bundle = [NSBundle bundleWithPath:path];
+//    bundle = [NSBundle bundleWithIdentifier:@"com.ecolemo.SampleFrameworkResources"];
     NSLog(@"%@", bundle);
+    NSLog(@"%@", [NSBundle allBundles]);
+    NSLog(@"%@", path);
     UIViewController* controller = [[MyViewController alloc] initWithNibName:@"MyViewController" bundle:bundle];
     [self.navigationController pushViewController:controller animated:YES];
 

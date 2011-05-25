@@ -524,21 +524,21 @@ class Pbxproj(object):
 		
 		return True
 
-	def add_bundle(self):
-		tthash_base = self.get_hash_base('Three20.bundle')
+	def add_bundle(self, name):
+		tthash_base = self.get_hash_base(name + 'Resources.bundle')
 
 		project_path = os.path.dirname(os.path.abspath(self.xcodeprojpath()))
-		build_path = os.path.join(Paths.src_dir, 'Three20.bundle')
+		build_path = os.path.join(Paths.src_dir, name + 'Resources.bundle')
 		rel_path = relpath(project_path, build_path)
 		
-		fileref_hash = self.add_filereference('Three20.bundle', 'plug-in', tthash_base+'0', rel_path, 'SOURCE_ROOT')
+		fileref_hash = self.add_filereference(name + 'Resources.bundle', 'plug-in', tthash_base+'0', '../..', 'SOURCE_ROOT')
 
-		libfile_hash = self.add_buildfile('Three20.bundle', fileref_hash, tthash_base+'1')
+		libfile_hash = self.add_buildfile(name + 'Resources.bundle', fileref_hash, tthash_base+'1')
 
-		if not self.add_file_to_resources('Three20.bundle', fileref_hash):
+		if not self.add_file_to_resources(name + 'Resources.bundle', fileref_hash):
 			return False
 
-		if not self.add_file_to_resources_phase('Three20.bundle', libfile_hash):
+		if not self.add_file_to_resources_phase(name + 'Resources.bundle', libfile_hash):
 			return False
 
 		return True
